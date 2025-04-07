@@ -1,0 +1,4 @@
+{
+  "ignore": ["@tailwind"],
+  "knownAtRules": ["tailwind", "apply", "variants", "responsive", "screen", "layer"]
+} 
