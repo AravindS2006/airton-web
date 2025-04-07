@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Button } from '@nextui-org/react';
 import { FaGithub, FaInfoCircle, FaBrain, FaChartLine, FaLightbulb, FaBars, FaTimes } from 'react-icons/fa';
+import Image from 'next/image';
 
 const navItems = [
   { name: 'Home', href: '#', icon: FaLightbulb },
@@ -194,12 +195,14 @@ export default function Header() {
               <div className="relative flex justify-center">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary-color/20 to-secondary-color/20 rounded-full blur-3xl"></div>
                 <div className="w-full max-w-md aspect-square rounded-3xl overflow-hidden gradient-border">
-                  <div className="w-full h-full p-2 bg-surface-color rounded-3xl">
-                    <img 
+                  <div className="w-full h-full p-2 bg-surface-color rounded-3xl relative">
+                    <Image 
                       src="/assets/eye-scan.jpg" 
                       alt="Eye Scan Visualization"
-                      className="w-full h-full object-cover rounded-2xl"
+                      fill
+                      className="object-cover rounded-2xl"
                       onError={(e) => {
+                        // @ts-ignore
                         e.currentTarget.src = "https://placehold.co/600x600/21262D/60A5FA?text=AI+Eye+Analysis";
                       }}
                     />

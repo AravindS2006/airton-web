@@ -2,13 +2,15 @@
 
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import { motion } from 'framer-motion';
 
 export default function ThreeJSBackground() {
   const mountRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!mountRef.current) return;
+
+    // Store ref value in a variable for cleanup
+    const currentMount = mountRef.current;
 
     // Scene setup
     const scene = new THREE.Scene();
@@ -20,7 +22,7 @@ export default function ThreeJSBackground() {
     
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    mountRef.current.appendChild(renderer.domElement);
+    currentMount.appendChild(renderer.domElement);
 
     // Create particles
     const particlesGeometry = new THREE.BufferGeometry();
@@ -295,7 +297,7 @@ export default function ThreeJSBackground() {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
-      mountRef.current?.removeChild(renderer.domElement);
+      currentMount?.removeChild(renderer.domElement);
       
       // Dispose of geometries and materials
       particlesGeometry.dispose();
