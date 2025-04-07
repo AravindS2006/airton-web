@@ -13,9 +13,13 @@ const navItems = [
   { name: 'Results', href: '#results', icon: FaChartLine },
 ];
 
+// Default placeholder image URL
+const PLACEHOLDER_IMAGE = "https://placehold.co/600x600/0F172A/60A5FA?text=AI+Glaucoma+Detection";
+
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const { scrollY } = useScroll();
   
   const headerOpacity = useTransform(scrollY, [0, 100], [0.8, 1]);
@@ -197,14 +201,12 @@ export default function Header() {
                 <div className="w-full max-w-md aspect-square rounded-3xl overflow-hidden gradient-border">
                   <div className="w-full h-full p-2 bg-surface-color rounded-3xl relative">
                     <Image 
-                      src="/assets/eye-scan.jpg" 
+                      src={imageError ? PLACEHOLDER_IMAGE : PLACEHOLDER_IMAGE}
                       alt="Eye Scan Visualization"
                       fill
                       className="object-cover rounded-2xl"
-                      onError={(e) => {
-                        // @ts-ignore
-                        e.currentTarget.src = "https://placehold.co/600x600/21262D/60A5FA?text=AI+Eye+Analysis";
-                      }}
+                      priority
+                      onError={() => setImageError(true)}
                     />
                   </div>
                 </div>

@@ -7,6 +7,7 @@ import Header from '@/components/Header';
 import DetectionSection from '@/components/DetectionSection';
 import InfoSection from '@/components/InfoSection';
 import Footer from '@/components/Footer';
+import MotionTest from '@/components/MotionTest';
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       {/* Main Content */}
       <div className="relative z-10">
         <Header />
+        <MotionTest />
         <DetectionSection />
         <InfoSection />
         <Footer />

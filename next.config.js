@@ -4,7 +4,12 @@ const nextConfig = {
     ignoreDuringBuilds: true, // Temporarily ignore ESLint errors during build
   },
   images: {
-    domains: ['placehold.co'], // Allow images from placehold.co
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+      },
+    ],
   },
   // Ignore deprecation warnings during build
   webpack: (config) => {

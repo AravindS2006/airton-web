@@ -10,14 +10,10 @@ interface ResultDisplayProps {
   loading: boolean;
 }
 
-export default function ResultDisplay({ result, confidence = 0, loading }: ResultDisplayProps) {
+export default function ResultDisplayNew({ result, confidence = 0, loading }: ResultDisplayProps) {
   if (loading) {
     return (
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="w-full"
-      >
+      <div className="w-full">
         <div className="glassmorphism rounded-2xl">
           <div className="flex flex-col items-center justify-center p-8 space-y-4">
             <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
@@ -25,7 +21,7 @@ export default function ResultDisplay({ result, confidence = 0, loading }: Resul
             <p className="text-sm text-gray-400">Our AI model is processing your eye image</p>
           </div>
         </div>
-      </motion.div>
+      </div>
     );
   }
 
@@ -44,12 +40,7 @@ export default function ResultDisplay({ result, confidence = 0, loading }: Resul
   });
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="w-full"
-    >
+    <div className="w-full">
       <div className={`glassmorphism rounded-2xl overflow-hidden border ${isGlaucoma ? 'border-error/20' : 'border-success/20'}`}>
         {/* Top header with status */}
         <div 
@@ -86,12 +77,7 @@ export default function ResultDisplay({ result, confidence = 0, loading }: Resul
         {/* Main content */}
         <div className="p-6 space-y-6">
           {/* Confidence bar */}
-          <motion.div 
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="space-y-2"
-          >
+          <div className="space-y-2">
             <div className="flex justify-between">
               <span className="text-sm font-medium flex items-center gap-2">
                 <FaChartLine className={isGlaucoma ? 'text-error' : 'text-success'} />
@@ -102,22 +88,15 @@ export default function ResultDisplay({ result, confidence = 0, loading }: Resul
               </span>
             </div>
             <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
-              <motion.div 
-                initial={{ width: 0 }}
-                animate={{ width: `${confidencePercentage}%` }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
+              <div 
                 className={`h-full ${isGlaucoma ? 'bg-error' : 'bg-success'}`}
+                style={{ width: `${confidencePercentage}%` }}
               />
             </div>
-          </motion.div>
+          </div>
           
           {/* Additional information */}
-          <motion.div 
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="space-y-4"
-          >
+          <div className="space-y-4">
             <div className="flex items-start gap-3 p-4 rounded-xl bg-gray-800/50">
               <FaInfo className="text-primary mt-1 flex-shrink-0" />
               <div>
@@ -142,15 +121,10 @@ export default function ResultDisplay({ result, confidence = 0, loading }: Resul
                 </div>
               </div>
             )}
-          </motion.div>
+          </div>
           
           {/* Action buttons */}
-          <motion.div 
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="flex flex-wrap gap-3 pt-4"
-          >
+          <div className="flex flex-wrap gap-3 pt-4">
             <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/20 hover:bg-primary/30 text-primary transition-colors">
               <FaPrint />
               <span>Print Report</span>
@@ -163,9 +137,9 @@ export default function ResultDisplay({ result, confidence = 0, loading }: Resul
               <FaDownload />
               <span>Download</span>
             </button>
-          </motion.div>
+          </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
-}
+} 

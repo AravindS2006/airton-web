@@ -7,7 +7,7 @@ import { Button } from '@nextui-org/react';
 import { FaEye, FaHistory, FaBrain, FaTimes, FaCheck, FaCalendarAlt, FaChartLine } from 'react-icons/fa';
 import axios from 'axios';
 import ImageUpload from './ImageUpload';
-import ResultDisplay from './ResultDisplay';
+import ResultDisplayNew from './ResultDisplayNew';
 
 // Confidence type definition
 type Confidence = {
@@ -305,7 +305,7 @@ export default function DetectionSection() {
                     exit={{ opacity: 0 }}
                     className="h-full"
                   >
-                    <ResultDisplay 
+                    <ResultDisplayNew 
                       result={result as string} 
                       confidence={confidence ? confidence.score : undefined}
                       loading={false}
